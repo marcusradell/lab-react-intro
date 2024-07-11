@@ -5,5 +5,9 @@ export const Route = createLazyFileRoute("/about")({
 });
 
 function About() {
-  return <div className="p-2">Hello from About!</div>;
+  return (
+    <div className="p-2">
+      This app shows how to get started with Tanstack Query and Tanstack Router.
+    </div>
+  );
 }
