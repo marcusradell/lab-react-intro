@@ -1,12 +1,18 @@
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { createTodoApi } from "./todo-api";
+import { useState } from "react";
 
 const todoApi = createTodoApi();
 
 export const Todos = () => {
+  const [page, setPage] = useState(0);
+
   const queryClient = useQueryClient();
 
-  const query = useQuery({ queryKey: ["todos"], queryFn: todoApi.getAll });
+  const query = useQuery({
+    queryKey: ["todos", page],
+    queryFn: () => todoApi.getPage(page),
+  });
 
   const mutation = useMutation({
     mutationFn: todoApi.add,
@@ -32,6 +38,14 @@ export const Todos = () => {
         }}
       >
         Add Todo
+      </button>
+      {page}
+      <button
+        onClick={() => {
+          setPage(page + 1);
+        }}
+      >
+        Next Page
       </button>
     </div>
   );

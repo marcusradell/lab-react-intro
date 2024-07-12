@@ -18,7 +18,7 @@ export const createTodoApi = () => {
 
   const getAll = async () => data;
 
-  const getPage = async (page: number) => data[page];
+  const getPage = async (page: number) => [data[page]];
 
   const add = async (todo: Todo) => {
     data.push(todo);
